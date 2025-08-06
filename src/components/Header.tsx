@@ -10,14 +10,13 @@ const styles = {
     nav: `flex justify-between items-center gap-[20px]`,
     navItem: `relative mr-1 cursor-pointer hover:opacity-60`,
     badge: `rounded-full bg-blue-600 h-1 w-1 absolute bottom-5 right-0 top-1 ring-4 ring-blue-600 opacity-60`,
-    navLink: ``,
+    navLink: `text-white flex`,
     inputContainer: `flex items-center justify-center p-2 rounded bg-[#171924]`,
-    input: `bg-transparent outline-none text-white w-70 ml-3`,
+    input: `bg-transparent outline-none text-white w-auto ml-3`,
 }
 
 export default function Header() {
     return (
-
         <div className={styles.header}>
             <Image src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg" alt='logo' width={220} height={220} />
             <div className={styles.headerWrapper}>

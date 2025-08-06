@@ -5,6 +5,7 @@ import React from 'react'
 import { mainnet, polygon, sepolia, optimism, arbitrum, base } from 'viem/chains';
 import { WagmiProvider } from 'wagmi'
 import { MoralisProvider } from 'react-moralis';
+import { CoinmarketProvider } from "@/context/context"
 
 
 const config = getDefaultConfig({
@@ -32,10 +33,16 @@ export default function RainbowKitConfigProvider({ children }: { children: React
     //     </RainbowKitProvider>
     //   </QueryClientProvider>
     // </WagmiProvider >
+
+
+
+
     <MoralisProvider serverUrl={
-      process.env.NEXT_PUBLIC_SERVER}
-      appId={process.env.NEXT_PUBLIC_APP_ID}>
-      {children}
+      process.env.NEXT_PUBLIC_SERVER!}
+      appId={process.env.NEXT_PUBLIC_APP_ID!}>
+      <CoinmarketProvider>
+        {children}
+      </CoinmarketProvider>
     </MoralisProvider>
   )
 }
