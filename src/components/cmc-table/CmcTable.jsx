@@ -20,8 +20,8 @@ export default function CMCTable() {
     }, [])
     const setData = useCallback(async () => {
         try {
-            // let apiResponse = await getTopTenCoins()
-            let apiResponse = data.data
+            let apiResponse = await getTopTenCoins()
+            // let apiResponse = data.data
             // console.log(apiResponse);
 
             let filteredResponse = []
