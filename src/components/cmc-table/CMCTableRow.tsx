@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import CoinNameRow from '@/components/CoinNameRow'
 
 const styles = {
-    tableRow: `text-white border-b border-gray-800 text-[0.93rem]`,
+    tableRow: `text-white border-b border-gray-800 text-[0.83rem]`,
 }
 const graphImages = [
     'https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/52.svg',

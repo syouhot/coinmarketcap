@@ -11,10 +11,14 @@ import tera from '../../public/assets/tera.png'
 import solana from '../../public/assets/solana.png'
 import avalanche from '../../public/assets/avalanche.png'
 import bnb from '../../public/assets/bnb.png'
+import Image from 'next/image'
+import Rate from './cmc-table/Rate'
+import RateFilled from './buttons/RateFilled'
+import DropdownBtn from './buttons/DropDownBtn'
 
 
 const styles = {
-    coinDetails: `min-h-screen text-white`,
+    coinDetails: `min-h-screen text-white px-2`,
     coinDetailsLinks: `flex mt-3 flex-wrap`,
     greyBtn: `mr-3 mb-3 bg-slate-800 px-3 py-1 rounded-xl`,
     borderLeft: `ml-10 pl-5 w-full border-l border-gray-800`,
@@ -25,8 +29,264 @@ const styles = {
     coinRates: `w-full flex items-start justify-between`,
     flexBetween: `flex justify-between`,
 }
-export default function CoinDetails({ coinName = '', coinSymbol = '', price }: coinDetailsInterface) {
+export default function CoinDetails({ coinName, coinSymbol, price }: coinDetailsInterface) {
+    const coinIcon = () => {
+        switch (coinName) {
+            case 'Bitcoin':
+                return (
+                    <Image
+                        src={btc}
+                        className='rounded-full'
+                        width={50}
+                        height={50}
+                        alt=''
+                    />
+                )
+
+            case 'Ethereum':
+                return (
+                    <Image
+                        src={eth}
+                        className='rounded-full'
+                        width={50}
+                        height={50}
+                        alt=''
+                    />
+                )
+
+            case 'Tether':
+                return (
+                    <Image
+                        src={usdt}
+                        className='rounded-full'
+                        width={50}
+                        height={50}
+                        alt=''
+                    />
+                )
+
+            case 'BNB':
+                return (
+                    <Image
+                        src={bnb}
+                        className='rounded-full'
+                        width={50}
+                        height={50}
+                        alt=''
+                    />
+                )
+
+            case 'USD Coin':
+                return (
+                    <Image
+                        src={usdc}
+                        className='rounded-full'
+                        width={50}
+                        height={50}
+                        alt=''
+                    />
+                )
+
+            case 'XRP':
+                return (
+                    <Image
+                        src={xrp}
+                        className='rounded-full'
+                        width={50}
+                        height={50}
+                        alt=''
+                    />
+                )
+
+            case 'Cardano':
+                return (
+                    <Image
+                        src={cardano}
+                        className='rounded-full'
+                        width={50}
+                        height={50}
+                        alt=''
+                    />
+                )
+
+            case 'Terra':
+                return (
+                    <Image
+                        src={tera}
+                        className='rounded-full'
+                        width={50}
+                        height={50}
+                        alt=''
+                    />
+                )
+
+            case 'Solana':
+                return (
+                    <Image
+                        src={solana}
+                        className='rounded-full'
+                        width={50}
+                        height={50}
+                        alt=''
+                    />
+                )
+
+            case 'Avalanche':
+                return (
+                    <Image
+                        src={avalanche}
+                        className='rounded-full'
+                        width={50}
+                        height={50}
+                        alt=''
+                    />
+                )
+
+            default:
+                return (
+                    <Image
+                        src={btc}
+                        className='rounded-full'
+                        width={50}
+                        height={50}
+                        alt=''
+                    />
+                )
+        }
+    }
     return (
-        <div>CoinDetails</div>
+        <main className={styles.coinDetails}>
+            <div>
+                <div className={styles.coinDetailsWrapper}>
+                    <div className='flex flex-col w-fit'>
+                        <div className='flex items-center'>
+                            {coinIcon()}
+                            &nbsp;&nbsp;
+                            <div>
+                                <div className='flex'>
+                                    <p className='text-3xl'>{coinName}</p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <p className={styles.coinSymbol}>{coinSymbol}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div className={styles.coinDetailsLinks}>
+                            <div className={styles.greyBtn}>Solana.com</div>
+                            <div className={styles.greyBtn}>Explorers</div>
+                            <div className={styles.greyBtn}>Community</div>
+                            <div className={styles.greyBtn}>Chat</div>
+                            <div className={styles.greyBtn}>Source code</div>
+                            <div className={styles.greyBtn}>Whitepaper</div>
+                        </div>
+                        <br />
+                        Topics
+                        <div className={`${styles.coinDetailsLinks} topics`}>
+                            <div className={styles.greyBtn}>Mineable</div>
+                            <div className={styles.greyBtn}>Pow</div>
+                            <div className={styles.greyBtn}>SHA-256</div>
+                            <div className={styles.greyBtn}>Store of value</div>
+                        </div>
+                    </div>
+                    <div className='-ml-16'>
+                        <div className={styles.coinRates}>
+                            <div>
+                                <p className='text-gray-400'>
+                                    {coinName} ({coinSymbol})
+                                </p>
+                                <div className='flex my-3'>
+                                    <h1 className='text-4xl'>${price}</h1>
+                                    <RateFilled />
+                                </div>
+                                <div className='flex items-start'>
+                                    <p className='text-gray-400'>15.26 ETH</p>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <Rate isIncrement={true} rate="0.53%" />
+                                </div>
+                                <div className='flex items-start'>
+                                    <p className='text-gray-400'>24.33 BTC</p>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <Rate isIncrement={true} rate="0.99%" />
+                                </div>
+                            </div>
+                            <div className='flex'>
+                                <DropdownBtn label="Buy"/>
+                                <DropdownBtn label="Exchange"/>
+                                <DropdownBtn label="Gaming"/>
+                                <DropdownBtn label="Earn Crypto"/>
+                            </div>
+                        </div>
+                        <div className={styles.coinInfo}>
+                            <div>
+                                <div>
+                                    <small className={styles.title}>Market Cap</small>
+                                </div>
+                                <small>$123.456.789.000</small>
+                                <Rate isIncrement rate="0.53%" />
+                            </div>
+                            <div className={styles.borderLeft}>
+                                <div>
+                                    <small className={styles.title}>
+                                        Fully Diluted Market Cap
+                                    </small>
+                                </div>
+                                <small>$987.654.321.000</small>
+                                <Rate isIncrement rate="0.13%" />
+                            </div>
+                            <div className={styles.borderLeft}>
+                                <div>
+                                    <div>
+                                        <small className={styles.title}>
+                                            Volume &nbsp;<small className={coinSymbol}>BTC</small>
+                                        </small>
+                                    </div>
+                                    <small>$987.654.321.000</small>
+                                    <Rate isIncrement rate="0.92%" />
+                                </div>
+                                <br />
+                                <div>
+                                    <div>
+                                        <small className={styles.title}>Volume Market Cap</small>
+                                    </div>
+                                    <small>0.03315</small>
+                                </div>
+                            </div>
+                            <div className={styles.borderLeft}>
+                                <div>
+                                    <div>
+                                        <small className={styles.title}>Circulating Supply</small>
+                                    </div>
+                                    <small>987.654.321.000 BTC</small>
+                                </div>
+                                <br />
+                                <div>
+                                    <div className={styles.flexBetween}>
+                                        <div>
+                                            <small className={styles.title}>Max Supply</small>
+                                        </div>
+                                        <div>
+                                            <small>21.000.000</small>
+                                        </div>
+                                    </div>
+                                    <div className={styles.flexBetween}>
+                                        <div>
+                                            <small className={styles.title}>Total Supply</small>
+                                        </div>
+                                        <div>
+                                            <small>18.988.912</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     )
 }

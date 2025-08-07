@@ -1,9 +1,10 @@
+"use client"
 import { useState, useEffect } from "react"
 import CoinDetails from "@/components/CoinDetails"
 import Header from "@/components/Header"
 import { useSearchParams } from "next/navigation"
 
-const Price = () => {
+export default function Price ()  {
     const searchParams = useSearchParams()
     const [coinName, setCoinName] = useState('')
     const [coinSymbol, setCoinSymbol] = useState('')

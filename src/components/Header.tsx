@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import React from 'react'
+import btc from '../../public/assets/btc.png'
 import Search from "../../public/assets/svg/search"
 // import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { ConnectButton } from 'web3uikit'
@@ -18,7 +18,7 @@ const styles = {
 export default function Header() {
     return (
         <div className={styles.header}>
-            <Image src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg" alt='logo' width={220} height={220} />
+            <Image className='cursor-pointer' src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg" alt='logo' width={220} height={220} onClick={() => window.location.href = '/'}/>
             <div className={styles.headerWrapper}>
                 <nav className={styles.nav}>
                     <div className={styles.navItem}>

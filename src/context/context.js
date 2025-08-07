@@ -5,7 +5,7 @@ const CoinmarketContext = createContext()
 export const CoinmarketProvider = ({children})=>{
     const getTopTenCoins = async ()=>{
         try {
-            const res = await fetch("/api/getTopTen")
+            const res = await fetch("/api/getTopTen",{next:{revalidate:3600}})
             const data = await res.json() 
             
             return data.data.data
