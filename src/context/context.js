@@ -1,8 +1,8 @@
-import React, { createContext,useState,useEffect, useContext } from "react"
+import React, { createContext, useState, useEffect, useContext } from "react"
 
 const CoinmarketContext = createContext()
 
-export const CoinmarketProvider = ({children})=>{
+export const CoinmarketProvider = ({ children }) => {
     const getTopTenCoins = async ()=>{
         try {
             const res = await fetch("/api/getTopTen",{next:{revalidate:3600}})

@@ -20,8 +20,8 @@ export default function CMCTable() {
     }, [])
     const setData = useCallback(async () => {
         try {
-            let apiResponse = await getTopTenCoins()
-            // let apiResponse = data.data
+            // let apiResponse = await getTopTenCoins()
+            let apiResponse = data.data
             // console.log(apiResponse);
 
             let filteredResponse = []
@@ -38,8 +38,6 @@ export default function CMCTable() {
 
         }
     }, [getTopTenCoins])
-    console.log(coinData, 2222);
-
     return (
         <div className='text-white font-bold'>
             <div className='mx-auto max-w-screen-2xl'>

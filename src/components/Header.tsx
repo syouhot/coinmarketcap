@@ -2,8 +2,8 @@
 import Image from 'next/image'
 import btc from '../../public/assets/btc.png'
 import Search from "../../public/assets/svg/search"
-// import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { ConnectButton } from 'web3uikit'
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+// import { ConnectButton } from 'web3uikit'
 const styles = {
     header: 'bg-[#17171a] text-white h-20 flex gap-[100px] w-full p-[30px]',
     headerWrapper: `flex justify-between h-full max-w-screen-xl mx-auto px-4`,

@@ -1,7 +1,9 @@
+
 import Image from "next/image";
 import Header from "@/components/Header";
 import Trending from "@/components/Trending";
 import CMCTable from "@/components/cmc-table/CmcTable";
+
 
 export default function Home() {
   return (
