@@ -10,12 +10,16 @@ import tera from '../../public/assets/tera.png'
 import solana from '../../public/assets/solana.png'
 import avalanche from '../../public/assets/avalanche.png'
 import bnb from '../../public/assets/bnb.png'
+import { useWeb3 } from '@/context/web3Provider'
 
 const styles = {
   coinNameRow: `flex items-center`,
   buyButton: `bg-[#1a1f3a] text-[#6188ff] p-1 px-3 text-sm rounded-lg cursor-pointer hover:opacity-50`,
 }
 export default function CoinNameRow({ name, icon, clicked }: { name: string, icon: StaticImageData, clicked: () => void }) {
+
+  const {openModal} = useWeb3()
+
   const coinIcon = () => {
     switch (name) {
       case 'Bitcoin':
@@ -68,7 +72,7 @@ export default function CoinNameRow({ name, icon, clicked }: { name: string, ico
         </div>
         <p>
           {(name === "Bitcoin" || name === "Ethereum" || name === "Tether") ? (
-            <span className={styles.buyButton}>Buy</span>
+            <span className={styles.buyButton} onClick={()=>openModal()}>Buy</span>
           ) : (
             <></>
           )}

@@ -1,14 +1,19 @@
+"use client"
 import { createContext, useContext, useEffect, useState } from "react"
 import { useAccount, useConnect, useChainId, useBalance } from "wagmi";
+import { ethers } from "ethers";
 import {
     dogeAbi,
     daiAbi,
     linkAbi,
     usdcAbi,
+    swapAbi,
     dogeAddress,
     linkAddress,
     daiAddress,
     usdcAddress,
+    swapAddress,
+    coins,
 } from '../lib/constants'
 import { useEthersProvider, useEthersSigner } from "./hook";
 
@@ -23,10 +28,14 @@ export const Web3Provider = ({ children }) => {
     const [currentAccount, setCurrentAccount] = useState('')
     const [openBuyCryptoModal, setOpenBuyCryptoModal] = useState(false)
     const [fromToken, setFromToken] = useState('ETH')
-    const [toToken, setToToken] = useState('')
+    const [toToken, setToToken] = useState(coins[0].name)
     const [amount, setAmount] = useState('')
 
-
+    const openModal = ()=>{
+        console.log(1111);
+        
+        setOpenBuyCryptoModal(true)
+    }
     useEffect(()=>{
         console.log(provider,111)
         console.log(signer,222)
@@ -73,8 +82,7 @@ export const Web3Provider = ({ children }) => {
                 const contractAddress = getToAddress()
                 const abi = getToAbi()
                 const contract = new ethers.Contract(contractAddress, abi, signer);
-                const amount = ethers.utils.parseEther("0.01")
-                const tx = await contract.mint(amount)
+                const tx = await contract.mint(address,ethers.utils.parseEther(amount.toString()))
                 const receipt = await tx.wait()
                 if(receipt.status===1){
                     console.log("mint操作成功");    
@@ -87,17 +95,34 @@ export const Web3Provider = ({ children }) => {
 
         }
     }
-    const swapTokens = ()=>{
+    const swapTokens =async ()=>{
         try {
             if (!isConnected) return
             if (fromToken == toToken) return alert("You cannot swap the same token")
             const fromAddress = getContractAddress()
             const toAddress = getToAddress()
             
-            // const fromContract = new ethers.Contract(fromAddress,getFromAbi(),signer)
-            // //授权
-            // await fromContract.approve()
-            
+            const fromContract = new ethers.Contract(fromAddress,getFromAbi(),signer)
+            const swapAmount = ethers.utils.parseEther(amount.toString())
+
+            const swapContract = new ethers.Contract(swapAddress,swapAbi,signer)
+            const tx  = await swapContract.swap(fromAddress,toAddress,swapAmount)
+            const receipt = await tx.wait()
+            if(receipt.status===1){
+                console.log("swap操作成功");    
+            }
+            //授权
+            // const txApprove = await fromContract.approve(swapAddress,swapAmount)
+            // const approveReceipt = await txApprove.wait()
+            // if(approveReceipt.status===1){
+            //     console.log("approve操作成功");    
+            //     const swapContract = new ethers.Contract(swapAddress,swapAbi,signer)
+            //     const tx = await swapContract.swap(address,fromAddress,toAddress,swapAmount,swapAmount)
+            //     const receipt = await tx.wait()
+            //         if(receipt.status===1){
+            //             console.log("swap操作成功");    
+            //         }
+            // }
             
 
         } catch (error) {
@@ -105,6 +130,19 @@ export const Web3Provider = ({ children }) => {
         }
     }
     const value = {
+        getContractAddress,
+        getFromAbi,
+        getToAddress,
+        getToAbi,
+        mint,
+        swapTokens,
+        setFromToken,
+        setToToken,
+        amount,
+        setAmount,
+        openModal,
+        openBuyCryptoModal,
+        setOpenBuyCryptoModal
 
     }
     return <Web3Context.Provider value={value}>{children}</Web3Context.Provider>

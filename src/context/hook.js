@@ -18,15 +18,15 @@ export function clientToProvider(client) {
     }
     return new providers.JsonRpcProvider(transport.url, network);
 }
-export function clientToSigner(client) {
-    const {chain, transport, account} = client
-    const network = {
-        chainId: chain.id,
-        name: chain.name,
-    }
-    const provider = new providers.JsonRpcProvider(transport.url, network);
-    return provider.getSigner(account.address)
-}
+// export function clientToSigner(client) {
+//     const {chain, transport, account} = client
+//     const network = {
+//         chainId: chain.id,
+//         name: chain.name,
+//     }
+//     const provider = new providers.JsonRpcProvider(transport.url, network);
+//     return provider.getSigner(account.address)
+// }
 
 export function useEthersSigner({ chainId } = {}) {
     const {data:client} = useConnectorClient({ chainId })
@@ -35,13 +35,13 @@ export function useEthersSigner({ chainId } = {}) {
     }, [client])
 }
 
-// export function clientToSigner(client) {
-//     const { account, chain, transport } = client;
-//     const network = {
-//         chainId: chain.id,
-//         name: chain.name,
-//     }
-//     const provider = new providers.Web3Provider(transport, network);
-//     const signer = provider.getSigner(account.address);
-//     return signer;
-// }
+export function clientToSigner(client) {
+    const { account, chain, transport } = client;
+    const network = {
+        chainId: chain.id,
+        name: chain.name,
+    }
+    const provider = new providers.Web3Provider(transport, network);
+    const signer = provider.getSigner(account.address);
+    return signer;
+}

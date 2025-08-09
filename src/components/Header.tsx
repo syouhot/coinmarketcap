@@ -7,7 +7,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 const styles = {
     header: 'bg-[#17171a] text-white h-20 flex gap-[100px] w-full p-[30px]',
     headerWrapper: `flex justify-between h-full max-w-screen-xl mx-auto px-4`,
-    nav: `flex justify-between items-center gap-[20px]`,
+    nav: `flex justify-between items-center gap-[15px]`,
     navItem: `relative mr-1 cursor-pointer hover:opacity-60`,
     badge: `rounded-full bg-blue-600 h-1 w-1 absolute bottom-5 right-0 top-1 ring-4 ring-blue-600 opacity-60`,
     navLink: `text-white flex`,
